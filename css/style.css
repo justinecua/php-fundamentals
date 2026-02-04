@@ -134,3 +134,93 @@ body {
   align-items: center;
   width: 100%;
 }
+
+/* --------------------------------DASHBOARD ----------------------------------*/
+
+.dashboard-card {
+  width: 520px;
+  padding: 32px;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-card h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.dashboard-card h1 span {
+  color: var(--color-primary);
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #666;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.profile-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.profile-form input {
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  font-size: 14px;
+}
+
+.profile-form input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.profile-form button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.profile-form button:hover {
+  background: var(--color-primary-hover);
+}
+
+.dashboard-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.logout-link {
+  color: var(--color-error);
+  text-decoration: none;
+}
+
+.logout-link:hover {
+  text-decoration: underline;
+}
+
+.user-id {
+  color: #777;
+}

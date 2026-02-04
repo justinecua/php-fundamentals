@@ -28,6 +28,7 @@ function register($data, $connect2db, &$result, &$resultClass)
 
     $resultClass = "success";
     $result = "Registered Successfully";
+
 }
 
 function login($data, $connect2db, &$result, &$resultClass)
@@ -36,7 +37,7 @@ function login($data, $connect2db, &$result, &$resultClass)
     $password = $data['password'];
 
     $sql = "
-        SELECT password
+        SELECT id, firstname, lastname, email, password
         FROM accounts
         WHERE email = '$email'
         LIMIT 1
@@ -64,6 +65,16 @@ function login($data, $connect2db, &$result, &$resultClass)
         return;
     }
 
-    $resultClass = "success";
-    $result = "Login successful";
+    // $resultClass = "success";
+    // $result = "Login successful";
+
+
+    $_SESSION['user'] = [
+        'id' => $row['id'],
+        'firstname' => $row['firstname'],
+        'lastname' => $row['lastname'],
+        'email' => $row['email']
+    ];
+
+    header("Location: dashboard.php");
 }
