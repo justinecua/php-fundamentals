@@ -4,10 +4,12 @@ include '../functions/auth_guard.php';
 include '../functions/user_functions.php';
 
 $user = $_SESSION['user'];
+//print_r($user); 
 $profile = getProfile($connect2db, $user['id']);
 
 if (isset($_POST['update'])) {
-    updateProfile($_POST, $connect2db, $user['id']);
+    updateProfile($_POST, $connect2db, $user['id'],  $resultClass, $result);
+ 
 }
 ?>
 
@@ -46,6 +48,8 @@ if (isset($_POST['update'])) {
             </label>
 
             <button type="submit" name="update">Update Profile</button>
+
+            <?php include '../components/authDialogBox.php'?>
         </form>
 
         <div class="dashboard-footer">

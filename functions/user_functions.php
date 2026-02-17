@@ -8,7 +8,7 @@ function getProfile($connect2db, $userId)
     return mysqli_fetch_assoc($query);
 }
 
-function updateProfile($data, $connect2db, $userId)
+function updateProfile($data, $connect2db, $userId, &$resultClass, &$result)
 {
     $firstname = $data['firstname'];
     $lastname  = $data['lastname'];
@@ -22,7 +22,14 @@ function updateProfile($data, $connect2db, $userId)
         WHERE id = $userId
     ";
 
-    mysqli_query($connect2db, $sql);
+    if (!mysqli_query($connect2db, $sql)) {
+        $resultClass = "error";
+        $result = mysqli_error($connect2db);
+        return;
+    }
+
+    $resultClass = "success";
+    $result = "Updated Successfully";
 
     $_SESSION['user']['firstname'] = $firstname;
     $_SESSION['user']['lastname'] = $lastname;
