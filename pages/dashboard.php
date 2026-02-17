@@ -4,13 +4,20 @@ include '../functions/auth_guard.php';
 include '../functions/user_functions.php';
 
 $user = $_SESSION['user'];
+$userIDPost = "";
 //print_r($user); 
 $profile = getProfile($connect2db, $user['id']);
 
 if (isset($_POST['update'])) {
     updateProfile($_POST, $connect2db, $user['id'],  $resultClass, $result);
- 
 }
+
+if (isset($_POST['create'])) {
+    $userIDPost = createPost($connect2db, $user['id'], $_POST, $resultClass, $result);
+}
+$posts = getPosts($connect2db, $user['id']);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -24,39 +31,31 @@ if (isset($_POST['update'])) {
 <body>
 
     <div class="dashboard-card">
-        <h1>
-            Welcome,
-            <span><?php echo $user['firstname'] ?></span>
-        </h1>
+        <div class="dashboard-header">
+            <p>Welcome, <?php echo $user['firstname'] ?></p>
+            <a href="logout.php" class="logout-link">Logout</a>
+        </div>
 
-        <p class="subtitle">Personal Information</p>
-
-        <form method="POST" class="profile-form">
-            <label>
-                First Name
-                <input type="text" name="firstname" value="<?= $profile['firstname'] ?>" required>
-            </label>
-
-            <label>
-                Last Name
-                <input type="text" name="lastname" value="<?= $profile['lastname'] ?>" required>
-            </label>
-
-            <label>
-                Email
-                <input type="email" name="email" value="<?= $profile['email'] ?>" required>
-            </label>
-
-            <button type="submit" name="update">Update Profile</button>
-
-            <?php include '../components/authDialogBox.php'?>
+        <form method="POST" action="">
+            <div class="create-post-container">
+                <input class="post-input" type="text" name="postContent" placeholder="Type something">
+                <button class="post-button" name="create" type="submit">
+                    Create Post
+                </button>
+            </div>
         </form>
 
-        <div class="dashboard-footer">
-            <a href="logout.php" class="logout-link">Logout</a>
-            <span class="user-id">ID: <?= $user['id'] ?></span>
+        <p class="subtitle">Posts</p>
+
+        <?php foreach ($posts as $post): ?>
+        <div class="post-container">
+            <p><?php echo $post['firstname'] . " " .$post['lastname']; ?>&nbsp; </p>
+            <p class="subtitle"><?php echo $post['postContent']; ?></p>
         </div>
+
+        <?php endforeach; ?>
     </div>
+
 
 </body>
 
