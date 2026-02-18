@@ -215,6 +215,7 @@ body {
 .logout-link {
   color: var(--color-error);
   text-decoration: none;
+  width: none;
 }
 
 .logout-link:hover {
@@ -223,4 +224,42 @@ body {
 
 .user-id {
   color: #777;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-input {
+  border: none;
+  border-style: none;
+  padding: 20;
+  outline: none;
+  font-size: 15px;
+}
+
+.post-button {
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.create-post-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }
